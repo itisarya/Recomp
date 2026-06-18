@@ -1,0 +1,973 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap');
+
+  .wrap {
+    font-family: var(--font-sans);
+    padding: 2rem 0;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', var(--font-serif);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0 0 1.5rem;
+    line-height: 1.2;
+  }
+
+  /* ── PHONE GRID ── */
+  .phones-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 2.5rem;
+  }
+
+  .phone-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .phone-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .phone-frame {
+    width: 100%;
+    aspect-ratio: 9/19;
+    border-radius: 20px;
+    border: 2px solid var(--color-border-secondary);
+    overflow: hidden;
+    position: relative;
+    background: #f6f5f0;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+
+  /* ── APP COLORS ── */
+  .app-bg    { background: #f6f5f0; }
+  .app-card  { background: #ffffff; }
+  .app-sage  { background: #6f8c6a; }
+  .app-sage-pale { background: #e7ede4; }
+  .app-terra { background: #c1623d; }
+  .app-terra-pale { background: #f5e3da; }
+  .app-gold  { background: #c79a3e; }
+  .app-ink   { color: #232220; }
+  .app-muted { color: #8a8780; }
+  .app-dim   { color: #b7b3a8; }
+  .app-rule  { border-color: #e4e2d8; }
+
+  /* ── SCREEN INTERNALS ── */
+  .screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+    background: #f6f5f0;
+    font-size: 7px;
+    overflow: hidden;
+  }
+
+  .screen-header {
+    padding: 8px 8px 5px;
+    border-bottom: 0.5px solid #e4e2d8;
+    background: #f6f5f0;
+    flex-shrink: 0;
+  }
+
+  .screen-eyebrow {
+    font-size: 5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6f8c6a;
+    font-weight: 700;
+    margin-bottom: 1px;
+  }
+
+  .screen-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .screen-title {
+    font-family: 'Fraunces', serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: #232220;
+    line-height: 1.1;
+  }
+
+  .screen-days {
+    text-align: right;
+  }
+
+  .screen-days-num {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #232220;
+    line-height: 1;
+  }
+
+  .screen-days-lbl {
+    font-size: 4.5px;
+    color: #8a8780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .screen-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    font-size: 5px;
+    color: #8a8780;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .screen-tabs {
+    display: flex;
+    border-bottom: 0.5px solid #e4e2d8;
+    background: #f6f5f0;
+    padding: 0 6px;
+    flex-shrink: 0;
+  }
+
+  .screen-tab {
+    font-size: 4.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #8a8780;
+    padding: 4px 5px 3px;
+    border-bottom: 1.5px solid transparent;
+  }
+
+  .screen-tab.active {
+    color: #51694e;
+    border-bottom-color: #6f8c6a;
+  }
+
+  .screen-body {
+    flex: 1;
+    overflow: hidden;
+    padding: 6px 0;
+  }
+
+  /* Rings row */
+  .rings-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    padding: 0 6px;
+    margin-bottom: 5px;
+  }
+
+  .ring-card {
+    background: #fff;
+    border: 0.5px solid #e4e2d8;
+    border-radius: 6px;
+    padding: 4px 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .ring-svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ring-lbl {
+    font-size: 4px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a8780;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  /* checklist rows */
+  .check-section {
+    padding: 0 6px;
+    margin-bottom: 4px;
+  }
+
+  .check-sec-lbl {
+    font-size: 4.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8a8780;
+    font-weight: 700;
+    margin-bottom: 2px;
+    padding: 0 0 2px;
+    border-bottom: 0.5px solid #e4e2d8;
+  }
+
+  .check-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 0;
+    border-bottom: 0.5px solid #e4e2d8;
+  }
+
+  .check-circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid #e4e2d8;
+    flex-shrink: 0;
+  }
+
+  .check-circle.done {
+    background: #6f8c6a;
+    border-color: #6f8c6a;
+  }
+
+  .check-name {
+    font-size: 5.5px;
+    font-weight: 500;
+    color: #232220;
+    flex: 1;
+  }
+
+  .check-done-name {
+    font-size: 5.5px;
+    font-weight: 500;
+    color: #b7b3a8;
+    text-decoration: line-through;
+    flex: 1;
+  }
+
+  .check-badge {
+    font-size: 4px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a8780;
+    font-weight: 700;
+  }
+
+  .check-badge.done-badge {
+    color: #51694e;
+  }
+
+  /* sparkline area */
+  .spark-row-mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 0 6px;
+    margin-bottom: 4px;
+  }
+
+  .spark-mini {
+    background: #fff;
+    border: 0.5px solid #e4e2d8;
+    border-radius: 5px;
+    padding: 4px;
+  }
+
+  .spark-mini-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+  }
+
+  .spark-mini-lbl {
+    font-size: 4px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a8780;
+    font-weight: 700;
+  }
+
+  .spark-mini-val {
+    font-family: 'Fraunces', serif;
+    font-size: 7px;
+    font-weight: 600;
+    color: #232220;
+  }
+
+  .spark-mini-val.down { color: #51694e; }
+  .spark-mini-val.up { color: #9c4a2c; }
+
+  /* heatmap */
+  .hm-wrap {
+    padding: 0 6px;
+  }
+
+  .hm-grid-mini {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .hm-cell-mini {
+    aspect-ratio: 1;
+    border-radius: 1px;
+  }
+
+  .hm-0m { background: #e4e2d8; }
+  .hm-1m { background: #d8c9a8; }
+  .hm-2m { background: #c2a468; }
+  .hm-3m { background: #8fa787; }
+  .hm-4m { background: #6f8c6a; }
+
+  .hm-day-row-mini {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .hm-day-lbl-mini {
+    font-size: 3.5px;
+    color: #b7b3a8;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* weight chart */
+  .weight-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 0 6px;
+    margin-bottom: 4px;
+  }
+
+  .w-stat-mini {
+    background: #fff;
+    border: 0.5px solid #e4e2d8;
+    border-radius: 4px;
+    padding: 3px;
+  }
+
+  .w-stat-lbl-mini {
+    font-size: 3.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a8780;
+    font-weight: 700;
+    margin-bottom: 1px;
+  }
+
+  .w-stat-val-mini {
+    font-family: 'Fraunces', serif;
+    font-size: 8px;
+    font-weight: 600;
+    color: #232220;
+    line-height: 1;
+  }
+
+  .w-stat-val-mini.grn { color: #51694e; }
+  .w-stat-val-mini.red { color: #9c4a2c; }
+
+  .chart-mini-wrap {
+    padding: 0 6px;
+    margin-bottom: 4px;
+  }
+
+  .chart-mini-card {
+    background: #fff;
+    border: 0.5px solid #e4e2d8;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  .chart-mini-title {
+    font-size: 4px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #8a8780;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  /* streaks */
+  .sk-grid-mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 0 6px;
+    margin-bottom: 4px;
+  }
+
+  .sk-card-mini {
+    background: #fff;
+    border: 0.5px solid #e4e2d8;
+    border-radius: 6px;
+    padding: 5px 5px 4px;
+  }
+
+  .sk-num-mini {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #232220;
+    line-height: 1;
+  }
+
+  .sk-num-mini.red { color: #9c4a2c; }
+
+  .sk-lbl-mini {
+    font-size: 4px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a8780;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .sk-sub-mini {
+    font-size: 4px;
+    color: #b7b3a8;
+    margin-top: 1px;
+  }
+
+  /* attn */
+  .attn-card-mini {
+    display: flex;
+    align-items: flex-start;
+    gap: 3px;
+    border-radius: 4px;
+    padding: 3px 4px;
+    margin: 0 6px 3px;
+    font-size: 4.5px;
+    line-height: 1.4;
+  }
+
+  .attn-good { background: #e7ede4; color: #51694e; }
+  .attn-warn { background: #f5e3da; color: #9c4a2c; }
+
+  /* ── LINKEDIN POST ── */
+  .post-wrap {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+  }
+
+  .post-header {
+    padding: 1.25rem 1.5rem 1rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .post-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e7ede4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: #51694e;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  .post-author-name {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+  }
+
+  .post-author-title {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    line-height: 1.3;
+  }
+
+  .post-body {
+    padding: 1.25rem 1.5rem;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--color-text-primary);
+  }
+
+  .post-body p {
+    margin: 0 0 0.9rem;
+  }
+
+  .post-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .post-bold {
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .post-serif {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  .post-tag {
+    display: inline-block;
+    background: #e7ede4;
+    color: #3b5c38;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-right: 4px;
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .post-footer {
+    padding: 0.75rem 1.5rem;
+    border-top: 0.5px solid var(--color-border-tertiary);
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .post-action {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .post-action i {
+    font-size: 16px;
+  }
+
+  .post-reactions {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-left: auto;
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="section-eyebrow">App mockup</div>
+  <div class="section-title">Training Journal — four screens</div>
+
+  <div class="phones-grid">
+
+    <!-- SCREEN 1: TODAY -->
+    <div class="phone-wrap">
+      <div class="phone-frame">
+        <div class="screen">
+          <div class="screen-header">
+            <div class="screen-eyebrow">Training Journal</div>
+            <div class="screen-title-row">
+              <div class="screen-title">26-Week Body Recomp</div>
+              <div class="screen-days">
+                <div class="screen-days-num">174</div>
+                <div class="screen-days-lbl">days left</div>
+              </div>
+            </div>
+            <div class="screen-meta">
+              <span>THU · 19 JUN 2026</span>
+              <span>1 Jul → 31 Dec</span>
+            </div>
+          </div>
+          <div class="screen-tabs">
+            <div class="screen-tab active">Today</div>
+            <div class="screen-tab">Weight</div>
+            <div class="screen-tab">Streaks</div>
+            <div class="screen-tab">Log</div>
+            <div class="screen-tab">Plan</div>
+          </div>
+          <div class="screen-body">
+            <div class="rings-row">
+              <div class="ring-card">
+                <svg class="ring-svg" viewBox="0 0 20 20">
+                  <circle cx="10" cy="10" r="7" fill="none" stroke="#e4e2d8" stroke-width="3"/>
+                  <circle cx="10" cy="10" r="7" fill="none" stroke="#6f8c6a" stroke-width="3" stroke-linecap="round" stroke-dasharray="44" stroke-dashoffset="11" transform="rotate(-90 10 10)"/>
+                  <text x="10" y="13" text-anchor="middle" font-family="Fraunces,serif" font-size="5.5" fill="#232220" font-weight="600">75%</text>
+                </svg>
+                <div class="ring-lbl">Adher-ence</div>
+              </div>
+              <div class="ring-card">
+                <svg class="ring-svg" viewBox="0 0 20 20">
+                  <circle cx="10" cy="10" r="7" fill="none" stroke="#e4e2d8" stroke-width="3"/>
+                  <circle cx="10" cy="10" r="7" fill="none" stroke="#6f8c6a" stroke-width="3" stroke-linecap="round" stroke-dasharray="44" stroke-dashoffset="6" transform="rotate(-90 10 10)"/>
+                  <text x="10" y="13" text-anchor="middle" font-family="Fraunces,serif" font-size="5.5" fill="#232220" font-weight="600">86%</text>
+                </svg>
+                <div class="ring-lbl">Gym</div>
+              </div>
+              <div class="ring-card">
+                <svg class="ring-svg" viewBox="0 0 20 20">
+                  <circle cx="10" cy="10" r="7" fill="none" stroke="#e4e2d8" stroke-width="3"/>
+                  <circle cx="10" cy="10" r="7" fill="none" stroke="#c79a3e" stroke-width="3" stroke-linecap="round" stroke-dasharray="44" stroke-dashoffset="13" transform="rotate(-90 10 10)"/>
+                  <text x="10" y="13" text-anchor="middle" font-family="Fraunces,serif" font-size="5.5" fill="#232220" font-weight="600">70%</text>
+                </svg>
+                <div class="ring-lbl">Swim</div>
+              </div>
+              <div class="ring-card">
+                <svg class="ring-svg" viewBox="0 0 20 20">
+                  <circle cx="10" cy="10" r="7" fill="none" stroke="#e4e2d8" stroke-width="3"/>
+                  <circle cx="10" cy="10" r="7" fill="none" stroke="#6f8c6a" stroke-width="3" stroke-linecap="round" stroke-dasharray="44" stroke-dashoffset="4" transform="rotate(-90 10 10)"/>
+                  <text x="10" y="13" text-anchor="middle" font-family="Fraunces,serif" font-size="5.5" fill="#232220" font-weight="600">91%</text>
+                </svg>
+                <div class="ring-lbl">Diet</div>
+              </div>
+            </div>
+
+            <div class="attn-card-mini attn-good"><span>✓</span><span><strong>Great week</strong> — 6/7 check-ins logged. Streak alive.</span></div>
+
+            <div class="spark-row-mini">
+              <div class="spark-mini">
+                <div class="spark-mini-top">
+                  <span class="spark-mini-lbl">Adherence 14d</span>
+                  <span class="spark-mini-val">78%</span>
+                </div>
+                <svg width="100%" height="12" viewBox="0 0 60 12">
+                  <polyline points="0,10 10,8 20,9 30,6 40,4 50,5 60,3" fill="none" stroke="#6f8c6a" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="spark-mini">
+                <div class="spark-mini-top">
+                  <span class="spark-mini-lbl">Weight 14d</span>
+                  <span class="spark-mini-val down">−0.6</span>
+                </div>
+                <svg width="100%" height="12" viewBox="0 0 60 12">
+                  <polyline points="0,3 10,4 20,5 30,5 40,7 50,8 60,9" fill="none" stroke="#6f8c6a" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="check-section">
+              <div class="check-sec-lbl">Fitness</div>
+              <div class="check-row">
+                <div class="check-circle done"></div>
+                <div class="check-done-name">Gym</div>
+                <div class="check-badge done-badge">✓ done</div>
+              </div>
+              <div class="check-row">
+                <div class="check-circle"></div>
+                <div class="check-name">Swimming</div>
+                <div class="check-badge">6/7 days</div>
+              </div>
+              <div class="check-sec-lbl" style="margin-top:4px">Food</div>
+              <div class="check-row">
+                <div class="check-circle done"></div>
+                <div class="check-done-name">Diet locked</div>
+                <div class="check-badge done-badge">✓ done</div>
+              </div>
+              <div class="check-row">
+                <div class="check-circle done"></div>
+                <div class="check-done-name">Breakfast</div>
+                <div class="check-badge done-badge">✓</div>
+              </div>
+              <div class="check-row">
+                <div class="check-circle"></div>
+                <div class="check-name">Lunch</div>
+                <div class="check-badge">pending</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Today tab</div>
+    </div>
+
+    <!-- SCREEN 2: WEIGHT -->
+    <div class="phone-wrap">
+      <div class="phone-frame">
+        <div class="screen">
+          <div class="screen-header">
+            <div class="screen-eyebrow">Training Journal</div>
+            <div class="screen-title-row">
+              <div class="screen-title">26-Week Body Recomp</div>
+              <div class="screen-days">
+                <div class="screen-days-num">174</div>
+                <div class="screen-days-lbl">days left</div>
+              </div>
+            </div>
+            <div class="screen-meta">
+              <span>THU · 19 JUN 2026</span>
+              <span>1 Jul → 31 Dec</span>
+            </div>
+          </div>
+          <div class="screen-tabs">
+            <div class="screen-tab">Today</div>
+            <div class="screen-tab active">Weight</div>
+            <div class="screen-tab">Streaks</div>
+            <div class="screen-tab">Log</div>
+            <div class="screen-tab">Plan</div>
+          </div>
+          <div class="screen-body">
+            <div style="padding:4px 6px 3px; font-size:5px; letter-spacing:0.08em; text-transform:uppercase; color:#8a8780; font-weight:700;">Log today's weight</div>
+            <div style="display:flex; align-items:stretch; border:0.5px solid #e4e2d8; border-radius:6px; margin:0 6px 5px; overflow:hidden; background:#fff;">
+              <div style="flex:1; padding:5px 6px; font-family:'Fraunces',serif; font-size:13px; font-weight:600; color:#232220;">67.4</div>
+              <div style="font-size:5px; color:#8a8780; display:flex; align-items:center; padding:0 5px; border-left:0.5px solid #e4e2d8; font-weight:600;">kg</div>
+              <div style="background:#6f8c6a; color:#fff; font-size:5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; display:flex; align-items:center; padding:0 7px; border-left:0.5px solid #e4e2d8;">Log</div>
+            </div>
+
+            <div class="weight-stats-row">
+              <div class="w-stat-mini">
+                <div class="w-stat-lbl-mini">Current</div>
+                <div class="w-stat-val-mini">67.4</div>
+              </div>
+              <div class="w-stat-mini">
+                <div class="w-stat-lbl-mini">Goal</div>
+                <div class="w-stat-val-mini">62.0</div>
+              </div>
+              <div class="w-stat-mini">
+                <div class="w-stat-lbl-mini">To go</div>
+                <div class="w-stat-val-mini red">−5.4</div>
+              </div>
+            </div>
+
+            <div class="chart-mini-wrap">
+              <div class="chart-mini-card">
+                <div class="chart-mini-title">Weight trend · 30 days</div>
+                <svg width="100%" height="42" viewBox="0 0 120 42">
+                  <defs>
+                    <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#6f8c6a" stop-opacity="0.12"/>
+                      <stop offset="100%" stop-color="#6f8c6a" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,8 C10,8 20,10 30,11 S50,14 60,15 S80,18 90,20 S110,22 120,24" fill="url(#wg)" stroke="none"/>
+                  <path d="M0,8 C10,8 20,10 30,11 S50,14 60,15 S80,18 90,20 S110,22 120,24" fill="none" stroke="#6f8c6a" stroke-width="1.2" stroke-linecap="round"/>
+                  <line x1="0" y1="35" x2="120" y2="35" stroke="#e4e2d8" stroke-width="0.5" stroke-dasharray="2,2"/>
+                  <text x="0" y="39" font-size="4" fill="#b7b3a8" font-family="Inter,sans-serif">Jun 1</text>
+                  <text x="100" y="39" font-size="4" fill="#b7b3a8" font-family="Inter,sans-serif">Jun 30</text>
+                  <text x="87" y="22" font-size="4" fill="#51694e" font-family="Inter,sans-serif" font-weight="600">−0.6 kg</text>
+                </svg>
+              </div>
+            </div>
+
+            <div style="padding:3px 6px; font-size:5px; letter-spacing:0.08em; text-transform:uppercase; color:#8a8780; font-weight:700;">History</div>
+            <div style="display:grid; grid-template-columns: 1fr auto auto; padding:3px 6px; border-bottom:0.5px solid #e4e2d8; font-size:5px;">
+              <span style="color:#8a8780; font-weight:500;">Thu 19 Jun</span>
+              <span style="font-weight:600; color:#232220; padding:0 8px;">67.4</span>
+              <span style="color:#51694e; font-weight:700;">−0.2</span>
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr auto auto; padding:3px 6px; border-bottom:0.5px solid #e4e2d8; font-size:5px;">
+              <span style="color:#8a8780; font-weight:500;">Wed 18 Jun</span>
+              <span style="font-weight:600; color:#232220; padding:0 8px;">67.6</span>
+              <span style="color:#51694e; font-weight:700;">−0.1</span>
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr auto auto; padding:3px 6px; border-bottom:0.5px solid #e4e2d8; font-size:5px;">
+              <span style="color:#8a8780; font-weight:500;">Tue 17 Jun</span>
+              <span style="font-weight:600; color:#232220; padding:0 8px;">67.7</span>
+              <span style="color:#9c4a2c; font-weight:700;">+0.1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Weight tab</div>
+    </div>
+
+    <!-- SCREEN 3: STREAKS -->
+    <div class="phone-wrap">
+      <div class="phone-frame">
+        <div class="screen">
+          <div class="screen-header">
+            <div class="screen-eyebrow">Training Journal</div>
+            <div class="screen-title-row">
+              <div class="screen-title">26-Week Body Recomp</div>
+              <div class="screen-days">
+                <div class="screen-days-num">174</div>
+                <div class="screen-days-lbl">days left</div>
+              </div>
+            </div>
+            <div class="screen-meta">
+              <span>THU · 19 JUN 2026</span>
+              <span>1 Jul → 31 Dec</span>
+            </div>
+          </div>
+          <div class="screen-tabs">
+            <div class="screen-tab">Today</div>
+            <div class="screen-tab">Weight</div>
+            <div class="screen-tab active">Streaks</div>
+            <div class="screen-tab">Log</div>
+            <div class="screen-tab">Plan</div>
+          </div>
+          <div class="screen-body">
+            <div style="padding:4px 6px 3px; font-size:5px; letter-spacing:0.08em; text-transform:uppercase; color:#8a8780; font-weight:700;">Current streaks</div>
+            <div class="sk-grid-mini">
+              <div class="sk-card-mini">
+                <div class="sk-num-mini">14</div>
+                <div class="sk-lbl-mini">Gym days</div>
+                <div class="sk-sub-mini">Current streak</div>
+              </div>
+              <div class="sk-card-mini">
+                <div class="sk-num-mini">9</div>
+                <div class="sk-lbl-mini">Swim days</div>
+                <div class="sk-sub-mini">Current streak</div>
+              </div>
+              <div class="sk-card-mini">
+                <div class="sk-num-mini">21</div>
+                <div class="sk-lbl-mini">Diet days</div>
+                <div class="sk-sub-mini">Current streak</div>
+              </div>
+              <div class="sk-card-mini">
+                <div class="sk-num-mini red">2</div>
+                <div class="sk-lbl-mini">Swim missed</div>
+                <div class="sk-sub-mini">Watch this one</div>
+              </div>
+            </div>
+
+            <div style="padding:4px 6px 3px; font-size:5px; letter-spacing:0.08em; text-transform:uppercase; color:#8a8780; font-weight:700;">Activity heatmap</div>
+            <div class="hm-wrap" style="margin-bottom:4px;">
+              <div class="hm-day-row-mini">
+                <div class="hm-day-lbl-mini">M</div>
+                <div class="hm-day-lbl-mini">T</div>
+                <div class="hm-day-lbl-mini">W</div>
+                <div class="hm-day-lbl-mini">T</div>
+                <div class="hm-day-lbl-mini">F</div>
+                <div class="hm-day-lbl-mini">S</div>
+                <div class="hm-day-lbl-mini">S</div>
+              </div>
+              <div class="hm-grid-mini">
+                <div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-3m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-2m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-4m"></div>
+                <div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-3m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-1m"></div><div class="hm-cell-mini hm-4m"></div>
+                <div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-2m"></div><div class="hm-cell-mini hm-3m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-4m"></div>
+                <div class="hm-cell-mini hm-3m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-0m"></div><div class="hm-cell-mini hm-4m"></div><div class="hm-cell-mini hm-4m"></div>
+              </div>
+            </div>
+
+            <div style="padding:4px 6px 2px; font-size:5px; letter-spacing:0.08em; text-transform:uppercase; color:#8a8780; font-weight:700;">All-time bests</div>
+            <div style="padding:3px 6px; border-bottom:0.5px solid #e4e2d8; display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:5px; color:#8a8780;">Longest gym streak</span>
+              <span style="font-size:6px; font-weight:600; color:#232220;">18 days</span>
+            </div>
+            <div style="padding:3px 6px; border-bottom:0.5px solid #e4e2d8; display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:5px; color:#8a8780;">Longest diet streak</span>
+              <span style="font-size:6px; font-weight:600; color:#232220;">28 days</span>
+            </div>
+            <div style="padding:3px 6px; display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:5px; color:#8a8780;">Total check-ins</span>
+              <span style="font-size:6px; font-weight:600; color:#232220;">312</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Streaks tab</div>
+    </div>
+
+    <!-- SCREEN 4: SETUP / PLAN -->
+    <div class="phone-wrap">
+      <div class="phone-frame">
+        <div class="screen" style="justify-content:center; padding: 16px 10px;">
+          <div style="font-size:6px; letter-spacing:0.12em; text-transform:uppercase; color:#6f8c6a; font-weight:700; margin-bottom:6px;">Training Journal</div>
+          <div style="font-family:'Fraunces',serif; font-size:14px; font-weight:500; color:#232220; line-height:1.1; margin-bottom:4px;">Set up your challenge</div>
+          <div style="font-size:5px; color:#8a8780; margin-bottom:10px; line-height:1.6;">Define your window. Everything tracked against these dates.</div>
+
+          <div style="margin-bottom:6px;">
+            <div style="font-size:4.5px; letter-spacing:0.1em; text-transform:uppercase; color:#8a8780; font-weight:700; margin-bottom:3px;">Challenge name</div>
+            <div style="background:#fff; border:0.5px solid #d2cfc1; border-radius:5px; padding:5px 6px; font-size:8px; color:#232220;">26-Week Body Recomp</div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:6px;">
+            <div>
+              <div style="font-size:4.5px; letter-spacing:0.1em; text-transform:uppercase; color:#8a8780; font-weight:700; margin-bottom:3px;">Start date</div>
+              <div style="background:#fff; border:0.5px solid #d2cfc1; border-radius:5px; padding:5px 6px; font-size:6px; color:#232220;">01 Jul 2026</div>
+            </div>
+            <div>
+              <div style="font-size:4.5px; letter-spacing:0.1em; text-transform:uppercase; color:#8a8780; font-weight:700; margin-bottom:3px;">End date</div>
+              <div style="background:#fff; border:0.5px solid #d2cfc1; border-radius:5px; padding:5px 6px; font-size:6px; color:#232220;">31 Dec 2026</div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:6px;">
+            <div style="font-size:4.5px; letter-spacing:0.1em; text-transform:uppercase; color:#8a8780; font-weight:700; margin-bottom:3px;">Your name</div>
+            <div style="background:#fff; border:0.5px solid #6f8c6a; border-radius:5px; padding:5px 6px; font-size:8px; color:#232220;">Arya</div>
+          </div>
+
+          <div style="margin-bottom:8px;">
+            <div style="font-size:4.5px; letter-spacing:0.1em; text-transform:uppercase; color:#8a8780; font-weight:700; margin-bottom:3px;">Daily step goal</div>
+            <div style="background:#fff; border:0.5px solid #d2cfc1; border-radius:5px; padding:5px 6px; font-size:8px; color:#232220;">10,000</div>
+          </div>
+
+          <div style="background:#6f8c6a; color:#fff; border-radius:5px; padding:7px; text-align:center; font-size:5.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:5px;">Begin challenge ▸</div>
+
+          <div style="font-size:4px; color:#b7b3a8; text-align:center; letter-spacing:0.03em;">All data stored on this device only.</div>
+        </div>
+      </div>
+      <div class="phone-label">Setup screen</div>
+    </div>
+
+  </div>
+
+  <!-- LINKEDIN POST -->
+  <div class="section-eyebrow">LinkedIn post</div>
+  <div class="section-title">Ready to copy & share</div>
+
+  <div class="post-wrap">
+    <div class="post-header">
+      <div class="post-avatar">A</div>
+      <div>
+        <div class="post-author-name">Arya</div>
+        <div class="post-author-title">MedTech Systems Engineer · Building in public</div>
+      </div>
+    </div>
+    <div class="post-body">
+      <p>I got tired of fitness apps that feel like confetti explosions. So I built my own.</p>
+      <p><span class="post-bold">No subscriptions. No gamified streaks with fire emojis. No cloud sign-in.</span><br>
+      Just a single HTML file — bookmarked on my iPhone — that tracks a 26-week body recomp challenge like a <span class="post-serif">proper training journal should.</span></p>
+      <p>Here's what's inside 👇</p>
+      <p>
+        <span class="post-bold">📋 Today tab</span> — four ring charts for adherence, gym, swim & diet. Tap to check off. Sparklines show 14-day trends at a glance.<br><br>
+        <span class="post-bold">⚖️ Weight tab</span> — log daily, watch the trend curve bend downward, track the delta to goal.<br><br>
+        <span class="post-bold">🔥 Streaks</span> — a GitHub-style heatmap of every day you showed up, plus current streak counters that make skipping feel genuinely costly.<br><br>
+        <span class="post-bold">📐 Setup wizard</span> — name your challenge, set your dates, define step goals. Everything else flows from there.
+      </p>
+      <p>The aesthetic is deliberately <span class="post-serif">editorial</span> — think Kinfolk meets a training log. Fraunces serif, warm cream background, sage green accents. Because the tools you actually use shouldn't be ugly.</p>
+      <p><span class="post-bold">Tech stack:</span> vanilla HTML/CSS/JS. LocalStorage persistence. Zero dependencies (Chart.js for the weight graph, that's it). Netlify deploy in 30 seconds. No backend, no auth, no cost.</p>
+      <p>The whole thing is ~1,800 lines. <span class="post-bold">Built in a weekend.</span> Used every single day since.</p>
+      <p>If you've ever wanted a fitness tracker that respects your aesthetic intelligence — build one. It's more motivating than anything in the App Store.</p>
+      <p>
+        <span class="post-tag">#buildinpublic</span>
+        <span class="post-tag">#nocode</span>
+        <span class="post-tag">#fitness</span>
+        <span class="post-tag">#webdev</span>
+        <span class="post-tag">#personaltoolmaking</span>
+        <span class="post-tag">#sideproject</span>
+      </p>
+    </div>
+    <div class="post-footer">
+      <div class="post-action"><i class="ti ti-thumb-up" aria-hidden="true"></i> Like</div>
+      <div class="post-action"><i class="ti ti-message-circle" aria-hidden="true"></i> Comment</div>
+      <div class="post-action"><i class="ti ti-share" aria-hidden="true"></i> Repost</div>
+      <div class="post-reactions">👏 ❤️ 🔥 · <strong>217 reactions</strong></div>
+    </div>
+  </div>
+
+</div>
