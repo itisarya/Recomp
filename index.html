@@ -246,8 +246,60 @@ body { font-family: var(--sans); font-size: 14px; color: var(--ink); background:
 .add-section-btn { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 6px 18px 0; padding: 11px; border: 1.5px dashed var(--rule2); border-radius: 12px; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: 0.03em; cursor: pointer; background: transparent; width: calc(100% - 36px); }
 .add-section-btn:active { border-color: var(--sage); color: var(--sage-dark); }
 
-/* ── DIVIDER ── */
-.divider { height: 1px; background: var(--rule); margin: 0 18px; }
+/* ── HEAD-TO-HEAD ── */
+.h2h-vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; margin: 0 18px; background: var(--card); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+.h2h-player { padding: 18px 14px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.h2h-player.winner { background: var(--sage-pale); }
+.h2h-player.loser { background: var(--bg); }
+.h2h-name { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.h2h-score { font-family: var(--serif); font-size: 48px; font-weight: 600; line-height: 1; color: var(--ink); }
+.h2h-score.winning { color: var(--sage-dark); }
+.h2h-score.losing { color: var(--terracotta-dark); }
+.h2h-crown { font-size: 18px; min-height: 22px; }
+.h2h-divider { display: flex; align-items: center; justify-content: center; background: var(--bg2); width: 44px; font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; border-left: 1px solid var(--rule); border-right: 1px solid var(--rule); }
+
+.h2h-verdict { margin: 10px 18px 0; padding: 11px 14px; border-radius: 12px; font-size: 12px; line-height: 1.5; font-weight: 500; }
+.h2h-verdict.lead { background: var(--sage-pale); color: var(--sage-dark); }
+.h2h-verdict.behind { background: var(--terracotta-pale); color: var(--terracotta-dark); }
+.h2h-verdict.tied { background: var(--gold-pale); color: #7a5c10; }
+
+.h2h-stat-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 10px 18px; border-bottom: 1px solid var(--rule); gap: 8px; }
+.h2h-stat-you { font-size: 13px; font-weight: 600; color: var(--ink); text-align: left; }
+.h2h-stat-them { font-size: 13px; font-weight: 600; color: var(--ink); text-align: right; }
+.h2h-stat-you.win { color: var(--sage-dark); }
+.h2h-stat-them.win { color: var(--sage-dark); }
+.h2h-stat-lbl { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 700; text-align: center; }
+
+.h2h-week-row { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; margin: 0 18px; }
+.h2h-day-cell { display: flex; flex-direction: column; gap: 2px; align-items: center; }
+.h2h-day-lbl { font-size: 7.5px; color: var(--dim); letter-spacing: 0.04em; text-transform: uppercase; font-weight: 700; }
+.h2h-pip { width: 100%; aspect-ratio: 1; border-radius: 3px; }
+.h2h-pip.you-win { background: var(--sage); }
+.h2h-pip.them-win { background: var(--terracotta); }
+.h2h-pip.tied-day { background: var(--gold); }
+.h2h-pip.empty { background: var(--rule); }
+.h2h-pip.future { background: transparent; border: 1px dashed var(--rule2); }
+
+.h2h-badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 18px; }
+.h2h-badge { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 12px 12px 10px; display: flex; flex-direction: column; gap: 4px; }
+.h2h-badge.earned { border-color: var(--gold); background: var(--gold-pale); }
+.h2h-badge-icon { font-size: 20px; line-height: 1; }
+.h2h-badge-name { font-size: 10px; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+.h2h-badge-desc { font-size: 9px; color: var(--muted); line-height: 1.4; }
+
+.h2h-code-box { margin: 0 18px; background: var(--card); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; }
+.h2h-code-display { font-family: monospace; font-size: 18px; font-weight: 700; color: var(--ink); letter-spacing: 0.12em; padding: 14px 16px; background: var(--bg2); text-align: center; border-bottom: 1px solid var(--rule); }
+.h2h-code-btn { display: flex; gap: 0; }
+.h2h-code-btn button { flex: 1; padding: 11px; border: none; background: transparent; font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; color: var(--sage-dark); border-right: 1px solid var(--rule); }
+.h2h-code-btn button:last-child { border-right: none; color: var(--muted); }
+.h2h-code-btn button:active { background: var(--bg2); }
+
+.h2h-input-row { display: grid; grid-template-columns: 1fr auto; margin: 0 18px; border: 1px solid var(--rule2); border-radius: 12px; overflow: hidden; background: var(--card); }
+.h2h-input { background: transparent; border: none; font-family: monospace; font-size: 14px; font-weight: 600; color: var(--ink); padding: 11px 14px; outline: none; letter-spacing: 0.08em; width: 100%; text-transform: uppercase; }
+.h2h-input::placeholder { color: var(--dim); font-weight: 400; letter-spacing: 0; font-size: 12px; text-transform: none; }
+.h2h-import-btn { background: var(--sage); color: #fff; border: none; font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0 16px; cursor: pointer; }
+.h2h-import-btn:active { background: var(--sage-dark); }
+
 
 /* ── EMPTY ── */
 .empty { padding: 36px 18px; font-size: 10.5px; color: var(--dim); letter-spacing: 0.08em; text-transform: uppercase; text-align: center; font-weight: 600; }
@@ -405,6 +457,7 @@ body { font-family: var(--sans); font-size: 14px; color: var(--ink); background:
   <button class="tab" onclick="switchTab('streaks')">Streaks</button>
   <button class="tab" onclick="switchTab('log')">Log</button>
   <button class="tab" onclick="switchTab('plan')">Plan</button>
+  <button class="tab" onclick="switchTab('h2h')">H2H</button>
   <button class="tab" onclick="switchTab('rules')">Rules</button>
 </div>
 
@@ -660,6 +713,69 @@ body { font-family: var(--sans); font-size: 14px; color: var(--ink); background:
 
 <div class="page" id="page-plan">
   <div id="planContainer"></div>
+</div>
+
+<div class="page" id="page-h2h">
+  <div class="sec-gap"></div>
+  <div class="sec-label"><span>Head-to-Head</span><span class="sec-label-meta" id="h2hWeekLabel"></span></div>
+
+  <!-- VS card -->
+  <div class="h2h-vs" id="h2hVsCard">
+    <div class="h2h-player" id="h2hYouSide">
+      <div class="h2h-crown" id="h2hYouCrown"></div>
+      <div class="h2h-score" id="h2hYouScore">—</div>
+      <div class="h2h-name" id="h2hYouName">You</div>
+    </div>
+    <div class="h2h-divider">VS</div>
+    <div class="h2h-player" id="h2hThemSide">
+      <div class="h2h-crown" id="h2hThemCrown"></div>
+      <div class="h2h-score" id="h2hThemScore">—</div>
+      <div class="h2h-name">Rajjo</div>
+    </div>
+  </div>
+
+  <!-- Verdict -->
+  <div class="h2h-verdict tied" id="h2hVerdict">Enter Rajjo's code below to start competing.</div>
+
+  <div class="sec-gap"></div>
+  <div class="sec-label">This week</div>
+
+  <!-- 7-day dual heatmap -->
+  <div class="h2h-week-row" id="h2hWeekGrid"></div>
+  <div style="display:flex;gap:14px;padding:8px 18px 0;align-items:center;">
+    <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--sage)"></div><span style="font-size:9px;color:var(--dim);font-weight:600;letter-spacing:0.04em;">YOU WIN</span></div>
+    <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--terracotta)"></div><span style="font-size:9px;color:var(--dim);font-weight:600;letter-spacing:0.04em;">RAJJO WINS</span></div>
+    <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--gold)"></div><span style="font-size:9px;color:var(--dim);font-weight:600;letter-spacing:0.04em;">TIED</span></div>
+  </div>
+
+  <div class="sec-gap"></div>
+  <div class="sec-label">Battle stats</div>
+  <div id="h2hStatRows"></div>
+
+  <div class="sec-gap"></div>
+  <div class="sec-label">Badges</div>
+  <div class="h2h-badge-grid" id="h2hBadges"></div>
+
+  <div class="sec-gap"></div>
+  <div class="sec-label">Your daily code</div>
+  <div class="h2h-code-box">
+    <div class="h2h-code-display" id="h2hMyCode">—</div>
+    <div class="h2h-code-btn">
+      <button onclick="copyH2HCode()">📋 Copy code</button>
+      <button onclick="shareH2HCode()">Share</button>
+    </div>
+  </div>
+  <div style="font-size:10px;color:var(--dim);padding:8px 18px 0;line-height:1.5;">Send this code to Rajjo each day. They paste it into their app to see how you're doing.</div>
+
+  <div class="sec-gap"></div>
+  <div class="sec-label">Enter Rajjo's code</div>
+  <div class="h2h-input-row">
+    <input class="h2h-input" id="h2hRivalInput" placeholder="e.g. RJJ-87-D14-W3" maxlength="20">
+    <button class="h2h-import-btn" onclick="importRivalCode()">Import ▸</button>
+  </div>
+  <div style="font-size:10px;color:var(--dim);padding:8px 18px 0;line-height:1.5;" id="h2hLastImport"></div>
+
+  <div class="sec-gap"></div>
 </div>
 
 <div class="page" id="page-rules">
@@ -1651,7 +1767,7 @@ function renderSparklines(){
 // ── TABS ──
 function switchTab(name){
   document.querySelectorAll('.tab').forEach((t,i)=>{
-    t.classList.toggle('active',['today','weight','streaks','log','plan','rules'][i]===name);
+    t.classList.toggle('active',['today','weight','streaks','log','plan','h2h','rules'][i]===name);
   });
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
@@ -1660,6 +1776,7 @@ function switchTab(name){
   if(name==='streaks') renderStreaks();
   if(name==='log') renderLog();
   if(name==='plan') renderPlan();
+  if(name==='h2h') renderH2H();
 }
 
 // ── TOAST ──
@@ -1751,6 +1868,252 @@ function openWeeklyReport() {
   
   document.getElementById('wr-msg').textContent = msg;
   openModal('weeklyReportModal');
+}
+
+// ── HEAD-TO-HEAD ENGINE ──
+
+// Code format: AAA-PCT-DSTREAK-WSTREAK  e.g. "ARY-087-D14-W3"
+// Prefix is first 3 chars of name (or "YOU"), pct is 3-digit, streak digits
+
+function h2hPrefix(){
+  const name = (S.cfg&&S.cfg.person)||'YOU';
+  return name.slice(0,3).toUpperCase().padEnd(3,'X');
+}
+
+function encodeH2HCode(){
+  const pct = calcPct(TD);
+  const streaks = calcStreaks();
+  const prefix = h2hPrefix();
+  const p = String(pct).padStart(3,'0');
+  const d = String(Math.min(streaks.overall,99)).padStart(2,'0');
+  const wPct = weekAvgPct();
+  const w = String(Math.min(wPct,99)).padStart(2,'0');
+  // also encode today's key habits as a bitmask: gym swim diet breakfast lunch dinner website pgd
+  const day = S.days[TD]||{};
+  const bits = ['gym','swim','diet','breakfast','lunch','dinner','website'].map(k=>day[k]?'1':'0').join('');
+  const bitmask = parseInt(bits,2).toString(16).toUpperCase().padStart(2,'0');
+  return `${prefix}-${p}-D${d}-W${w}-${bitmask}`;
+}
+
+function weekAvgPct(){
+  const now=new Date(); const dn=now.getDay();
+  const mon=new Date(now); mon.setDate(now.getDate()-((dn+6)%7));
+  let total=0, count=0;
+  for(let i=0;i<7;i++){
+    const d=new Date(mon); d.setDate(mon.getDate()+i);
+    const ds=d.toISOString().split('T')[0];
+    if(ds>TD) continue;
+    if(S.cfg&&ds<S.cfg.start) continue;
+    total += (S.days[ds]&&S.days[ds].completePct!=null) ? S.days[ds].completePct : calcPct(ds);
+    count++;
+  }
+  return count ? Math.round(total/count) : 0;
+}
+
+function decodeRivalCode(code){
+  // AAA-PCT-DSTREAK-WSTREAK-BITMASK
+  const parts = code.trim().toUpperCase().split('-');
+  if(parts.length < 4) return null;
+  try {
+    const pct = parseInt(parts[1])||0;
+    const dayStreak = parseInt((parts[2]||'D0').replace('D',''))||0;
+    const weekAvg = parseInt((parts[3]||'W0').replace('W',''))||0;
+    const bitmask = parts[4] ? parseInt(parts[4],16) : 0;
+    const bits = bitmask.toString(2).padStart(7,'0');
+    const keys = ['gym','swim','diet','breakfast','lunch','dinner','website'];
+    const habits = {};
+    keys.forEach((k,i)=>{ habits[k] = bits[i]==='1'; });
+    return { prefix: parts[0], pct, dayStreak, weekAvg, habits };
+  } catch(e){ return null; }
+}
+
+function importRivalCode(){
+  const raw = document.getElementById('h2hRivalInput').value.trim();
+  if(!raw){ toast('Paste Rajjo\'s code first'); return; }
+  const decoded = decodeRivalCode(raw);
+  if(!decoded){ toast('Invalid code — check and retry'); return; }
+  if(!S.rival) S.rival={};
+  S.rival.lastCode = raw;
+  S.rival.lastImport = TD;
+  S.rival.pct = decoded.pct;
+  S.rival.dayStreak = decoded.dayStreak;
+  S.rival.weekAvg = decoded.weekAvg;
+  S.rival.habits = decoded.habits;
+  // store per-day score for weekly grid
+  if(!S.rival.days) S.rival.days={};
+  S.rival.days[TD] = decoded.pct;
+  save();
+  document.getElementById('h2hRivalInput').value='';
+  toast('Rajjo\'s score imported 🔥');
+  renderH2H();
+}
+
+function copyH2HCode(){
+  const code = encodeH2HCode();
+  if(navigator.clipboard){ navigator.clipboard.writeText(code).then(()=>toast('Code copied!')); }
+  else { toast(code); }
+}
+
+function shareH2HCode(){
+  const code = encodeH2HCode();
+  if(navigator.share){ navigator.share({title:'My training code',text:code}); }
+  else { copyH2HCode(); }
+}
+
+const H2H_BADGES = [
+  { id:'perfect_week', icon:'🏆', name:'Perfect Week', desc:'100% for 7 days straight', check: (s)=> s.overall>=7 && weekAvgPct()===100 },
+  { id:'streak_7',     icon:'🔥', name:'On Fire',      desc:'7-day overall streak',       check: (s)=> s.overall>=7 },
+  { id:'streak_14',    icon:'⚡', name:'Unstoppable',  desc:'14-day streak',               check: (s)=> s.overall>=14 },
+  { id:'diet_king',    icon:'🥗', name:'Diet King',    desc:'Diet clean 10+ days in a row',check: (s)=> s.diet>=10 },
+  { id:'gym_beast',    icon:'💪', name:'Gym Beast',    desc:'10 gym sessions straight',    check: (s)=> s.gym>=10 },
+  { id:'swim_fish',    icon:'🏊', name:'Swim Fish',    desc:'10 swim days straight',       check: (s)=> s.swim>=10 },
+  { id:'comeback',     icon:'👊', name:'Comeback',     desc:'Beat Rajjo after losing last week', check: (s,rv,lastW)=> rv && weekAvgPct()>=(rv.weekAvg||0) && lastW<(rv.lastWeekAvg||101) },
+  { id:'dominant',     icon:'👑', name:'Dominant',     desc:'Week avg 20+ points ahead',   check: (s,rv)=> rv && (weekAvgPct()-(rv.weekAvg||0))>=20 },
+];
+
+function checkBadges(streaks, rival){
+  return H2H_BADGES.map(b=>({
+    ...b,
+    earned: b.check(streaks, rival)
+  }));
+}
+
+const verdictMessages = {
+  dominating: ["You're absolutely running circles around Rajjo. Zero mercy.", "Rajjo is watching you from a distance. Keep going.", "This isn't a competition, it's an execution. Dominant.", "Rajjo needs a miracle. You need to stay consistent. Easy."],
+  winning:    ["You've got the edge. Don't let Rajjo creep back.", "Ahead, but Rajjo is right behind you. Don't blink.", "Leading the race. Keep the pressure on.", "Nice lead. But Rajjo is not done yet — stay locked in."],
+  tied:       ["Dead level. This one goes to whoever blinks first.", "Perfectly matched. Today is the tiebreaker.", "All square. The next habit logged decides it.", "Tied. The pressure is real on both sides."],
+  losing:     ["Rajjo is ahead. Time to close the gap — now.", "You're behind. That should hurt. Fix it today.", "Rajjo is pulling away. Stop letting that happen.", "The deficit is real. Step it up."],
+  dominated:  ["Rajjo is destroying you. This is embarrassing. Wake up.", "You're getting cooked. Rajjo is showing up every single day.", "Massive gap. You need a serious reset — today.", "Rajjo is lapping you. Where did your discipline go?"],
+};
+
+function getVerdict(myPct, rivalPct){
+  const diff = myPct - rivalPct;
+  if(diff >= 20) return { type:'lead',    msgs: verdictMessages.dominating };
+  if(diff >= 5)  return { type:'lead',    msgs: verdictMessages.winning };
+  if(diff >= -4) return { type:'tied',    msgs: verdictMessages.tied };
+  if(diff >= -19)return { type:'behind',  msgs: verdictMessages.losing };
+  return               { type:'behind',   msgs: verdictMessages.dominated };
+}
+
+function renderH2H(){
+  const myPct = calcPct(TD);
+  const myWeekAvg = weekAvgPct();
+  const streaks = calcStreaks();
+  const rv = S.rival || null;
+  const rivalPct = rv ? (rv.pct||0) : null;
+  const rivalWeekAvg = rv ? (rv.weekAvg||0) : null;
+
+  // Update my code
+  document.getElementById('h2hMyCode').textContent = encodeH2HCode();
+
+  // Name
+  const myName = (S.cfg&&S.cfg.person) ? S.cfg.person.toUpperCase() : 'YOU';
+  document.getElementById('h2hYouName').textContent = myName;
+
+  // Scores
+  document.getElementById('h2hYouScore').textContent = myPct + '%';
+  document.getElementById('h2hThemScore').textContent = rivalPct !== null ? rivalPct + '%' : '—';
+
+  // Week label
+  document.getElementById('h2hWeekLabel').textContent = 'Week avg: ' + myWeekAvg + '% vs ' + (rivalWeekAvg !== null ? rivalWeekAvg + '%' : '?');
+
+  // Winner styling
+  const youSide = document.getElementById('h2hYouSide');
+  const themSide = document.getElementById('h2hThemSide');
+  const youScore = document.getElementById('h2hYouScore');
+  const themScore = document.getElementById('h2hThemScore');
+  const youCrown = document.getElementById('h2hYouCrown');
+  const themCrown = document.getElementById('h2hThemCrown');
+
+  if(rivalPct === null){
+    youSide.className='h2h-player'; themSide.className='h2h-player';
+    youScore.className='h2h-score'; themScore.className='h2h-score';
+    youCrown.textContent=''; themCrown.textContent='';
+  } else if(myPct > rivalPct){
+    youSide.className='h2h-player winner'; themSide.className='h2h-player loser';
+    youScore.className='h2h-score winning'; themScore.className='h2h-score losing';
+    youCrown.textContent='👑'; themCrown.textContent='';
+  } else if(myPct < rivalPct){
+    youSide.className='h2h-player loser'; themSide.className='h2h-player winner';
+    youScore.className='h2h-score losing'; themScore.className='h2h-score winning';
+    youCrown.textContent=''; themCrown.textContent='👑';
+  } else {
+    youSide.className='h2h-player'; themSide.className='h2h-player';
+    youScore.className='h2h-score'; themScore.className='h2h-score';
+    youCrown.textContent='🤝'; themCrown.textContent='🤝';
+  }
+
+  // Verdict
+  const verdictEl = document.getElementById('h2hVerdict');
+  if(rivalPct === null){
+    verdictEl.className='h2h-verdict tied';
+    verdictEl.textContent='Enter Rajjo\'s code below to start competing.';
+  } else {
+    const v = getVerdict(myWeekAvg, rivalWeekAvg);
+    const msgs = v.msgs;
+    verdictEl.className='h2h-verdict '+(v.type==='lead'?'lead':v.type==='tied'?'tied':'behind');
+    verdictEl.textContent = msgs[Math.floor(Math.random()*msgs.length)];
+  }
+
+  // Weekly grid
+  const now=new Date(); const dn=now.getDay();
+  const mon=new Date(now); mon.setDate(now.getDate()-((dn+6)%7));
+  const dayLabels=['M','T','W','T','F','S','S'];
+  const gridEl = document.getElementById('h2hWeekGrid');
+  gridEl.innerHTML = '';
+  for(let i=0;i<7;i++){
+    const d=new Date(mon); d.setDate(mon.getDate()+i);
+    const ds=d.toISOString().split('T')[0];
+    const isFuture = ds > TD;
+    const myDayPct = (S.days[ds]&&S.days[ds].completePct!=null) ? S.days[ds].completePct : (isFuture?null:calcPct(ds));
+    const rvDayPct = rv && rv.days && rv.days[ds]!=null ? rv.days[ds] : null;
+
+    let pipClass = 'empty';
+    if(isFuture) pipClass = 'future';
+    else if(myDayPct!==null && rvDayPct!==null){
+      if(myDayPct > rvDayPct) pipClass = 'you-win';
+      else if(myDayPct < rvDayPct) pipClass = 'them-win';
+      else pipClass = 'tied-day';
+    } else if(myDayPct!==null && myDayPct>0) pipClass = 'you-win';
+
+    const cell = document.createElement('div');
+    cell.className = 'h2h-day-cell';
+    cell.innerHTML = `<div class="h2h-pip ${pipClass}" title="${ds}"></div><div class="h2h-day-lbl">${dayLabels[i]}</div>`;
+    gridEl.appendChild(cell);
+  }
+
+  // Battle stats
+  const day = S.days[TD]||{};
+  const rvH = rv&&rv.habits||{};
+  const statRows = [
+    { lbl:'Today %',        you: myPct+'%',               them: rivalPct!==null?rivalPct+'%':'?',             youWin: rivalPct!==null&&myPct>rivalPct,              themWin: rivalPct!==null&&rivalPct>myPct },
+    { lbl:'Week avg',       you: myWeekAvg+'%',           them: rivalWeekAvg!==null?rivalWeekAvg+'%':'?',     youWin: rivalWeekAvg!==null&&myWeekAvg>rivalWeekAvg, themWin: rivalWeekAvg!==null&&rivalWeekAvg>myWeekAvg },
+    { lbl:'Overall streak', you: streaks.overall+' days', them: rv?(rv.dayStreak||0)+' days':'?',             youWin: rv&&streaks.overall>(rv.dayStreak||0),        themWin: rv&&(rv.dayStreak||0)>streaks.overall },
+    { lbl:'Workout today',  you: (S.days[TD]&&S.days[TD].gym)?'✓':'—',  them: rvH.gym?'✓':'—',              youWin: !!(S.days[TD]&&S.days[TD].gym)&&!rvH.gym,    themWin: rvH.gym&&!(S.days[TD]&&S.days[TD].gym) },
+    { lbl:'Sport today',    you: (S.days[TD]&&S.days[TD].swim)?'✓':'—', them: rvH.swim?'✓':'—',             youWin: !!(S.days[TD]&&S.days[TD].swim)&&!rvH.swim,  themWin: rvH.swim&&!(S.days[TD]&&S.days[TD].swim) },
+    { lbl:'Diet streak',    you: streaks.diet+' days',    them: rvH.diet?'✓':'—',                            youWin: streaks.diet>0&&!rvH.diet,                   themWin: rvH.diet&&streaks.diet===0 },
+  ];
+  document.getElementById('h2hStatRows').innerHTML = statRows.map(r=>`
+    <div class="h2h-stat-row">
+      <span class="h2h-stat-you${r.youWin?' win':''}">${r.you}</span>
+      <span class="h2h-stat-lbl">${r.lbl}</span>
+      <span class="h2h-stat-them${r.themWin?' win':''}">${r.them}</span>
+    </div>`).join('');
+
+  // Badges
+  const badges = checkBadges(streaks, rv);
+  document.getElementById('h2hBadges').innerHTML = badges.map(b=>`
+    <div class="h2h-badge${b.earned?' earned':''}">
+      <div class="h2h-badge-icon">${b.icon}</div>
+      <div class="h2h-badge-name">${b.name}</div>
+      <div class="h2h-badge-desc">${b.desc}</div>
+    </div>`).join('');
+
+  // Last import note
+  const imp = document.getElementById('h2hLastImport');
+  if(rv&&rv.lastImport){
+    imp.textContent = 'Last import: ' + fmtDate(rv.lastImport) + (rv.lastImport===TD?' (today)':'');
+  }
 }
 
 // ── BOOT ──
