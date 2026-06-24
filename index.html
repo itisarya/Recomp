@@ -1888,11 +1888,21 @@ function encodeH2HCode(){
   const d = String(Math.min(streaks.overall,99)).padStart(2,'0');
   const wPct = weekAvgPct();
   const w = String(Math.min(wPct,99)).padStart(2,'0');
-  // also encode today's key habits as a bitmask: gym swim diet breakfast lunch dinner website pgd
   const day = S.days[TD]||{};
   const bits = ['gym','swim','diet','breakfast','lunch','dinner','website'].map(k=>day[k]?'1':'0').join('');
   const bitmask = parseInt(bits,2).toString(16).toUpperCase().padStart(2,'0');
-  return `${prefix}-${p}-D${d}-W${w}-${bitmask}`;
+  // encode all 7 days of this week Mon-Sun as 3-digit pct, X for future/unknown
+  const now=new Date(); const dn=now.getDay();
+  const mon=new Date(now); mon.setDate(now.getDate()-((dn+6)%7));
+  const weekPcts=[];
+  for(let i=0;i<7;i++){
+    const dd=new Date(mon); dd.setDate(mon.getDate()+i);
+    const ds=dd.toISOString().split('T')[0];
+    if(ds>TD||( S.cfg&&ds<S.cfg.start)){ weekPcts.push('XXX'); continue; }
+    const v=(S.days[ds]&&S.days[ds].completePct!=null)?S.days[ds].completePct:calcPct(ds);
+    weekPcts.push(String(v).padStart(3,'0'));
+  }
+  return `${prefix}-${p}-D${d}-W${w}-${bitmask}-${weekPcts.join('.')}`;
 }
 
 function weekAvgPct(){
@@ -1911,7 +1921,7 @@ function weekAvgPct(){
 }
 
 function decodeRivalCode(code){
-  // AAA-PCT-DSTREAK-WSTREAK-BITMASK
+  // AAA-PCT-DSTREAK-WSTREAK-BITMASK-MON.TUE.WED.THU.FRI.SAT.SUN
   const parts = code.trim().toUpperCase().split('-');
   if(parts.length < 4) return null;
   try {
@@ -1923,7 +1933,12 @@ function decodeRivalCode(code){
     const keys = ['gym','swim','diet','breakfast','lunch','dinner','website'];
     const habits = {};
     keys.forEach((k,i)=>{ habits[k] = bits[i]==='1'; });
-    return { prefix: parts[0], pct, dayStreak, weekAvg, habits };
+    // decode week days if present
+    let weekDays = null;
+    if(parts[5]){
+      weekDays = parts[5].split('.').map(v=>v==='XXX'?null:parseInt(v)||0);
+    }
+    return { prefix: parts[0], pct, dayStreak, weekAvg, habits, weekDays };
   } catch(e){ return null; }
 }
 
@@ -1939,12 +1954,22 @@ function importRivalCode(){
   S.rival.dayStreak = decoded.dayStreak;
   S.rival.weekAvg = decoded.weekAvg;
   S.rival.habits = decoded.habits;
-  // store per-day score for weekly grid
   if(!S.rival.days) S.rival.days={};
-  S.rival.days[TD] = decoded.pct;
+  // store per-day scores from the full week if encoded
+  if(decoded.weekDays && decoded.weekDays.length===7){
+    const now=new Date(); const dn=now.getDay();
+    const mon=new Date(now); mon.setDate(now.getDate()-((dn+6)%7));
+    for(let i=0;i<7;i++){
+      const dd=new Date(mon); dd.setDate(mon.getDate()+i);
+      const ds=dd.toISOString().split('T')[0];
+      if(decoded.weekDays[i]!==null) S.rival.days[ds]=decoded.weekDays[i];
+    }
+  } else {
+    S.rival.days[TD] = decoded.pct;
+  }
   save();
   document.getElementById('h2hRivalInput').value='';
-  toast('Rajjo\'s score imported 🔥');
+  toast('Rajjo\'s week imported 🔥');
   renderH2H();
 }
 
